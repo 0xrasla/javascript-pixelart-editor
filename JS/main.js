@@ -1,15 +1,24 @@
-let palleteLength = 3240;
+let gridSize = 50;
+let gridWidth = gridheight = "10px";
 let palleteContainer = document.querySelector(".pallete");
 
 let selectedColor = "white";
 let defaultColor = 'black';
 
-function makePallete() {
-    for(let i = 0; i < palleteLength; i++) {
-        let box = document.createElement("div");
-        box.classList.add("box");
-        palleteContainer.appendChild(box)
-    }
+function generateGrid(v) {
+        let e = document.querySelector('.pallete');
+        for(let i = 0; i < v; i++){ 
+          let row = document.createElement("div"); 
+          row.className = "row"; 
+          for(let x = 1; x <= v; x++){ 
+              let cell = document.createElement("div"); 
+              cell.className = "box"; 
+              cell.style.height = gridheight;
+              cell.style.width = gridWidth;
+              row.appendChild(cell); 
+          } 
+          e.appendChild(row); 
+        } 
 }
 
 function handleButtons() {
@@ -18,6 +27,10 @@ function handleButtons() {
     for(let i of Array.from(colorPalleteButtons)) {
         i.addEventListener("click", (e) => {
             selectedColor = i.style.backgroundColor;
+
+            if(i.classList.contains('eraser')) {
+                selectedColor = defaultColor;
+            }
         })
     }
 }
@@ -40,6 +53,8 @@ function draw() {
             document.body.onmouseup = () => {
                 cliked = false;
             }
+
+            if (!cliked) i.style.backgroundColor = selectedColor; 
         })
 
         i.addEventListener("mouseleave", () => {
@@ -50,6 +65,8 @@ function draw() {
             document.body.onmouseup = () => {
                 cliked = false;
             }
+
+            if (!cliked) i.style.backgroundColor = defaultColor; 
         })
     }
 }
@@ -82,7 +99,7 @@ function saveIt() {
 }
 
 function main() {
-    makePallete()
+    generateGrid(gridSize)
     handleButtons()
     draw()
     clearButton()

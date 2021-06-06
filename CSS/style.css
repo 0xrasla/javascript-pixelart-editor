@@ -6,6 +6,7 @@
 body {
     background-color: black;
     color: white;
+    font-family: "Anonymous Pro";
 }
 
 .container {
@@ -16,21 +17,19 @@ body {
 }
 
 .pallete {
-    width: 600px;
-    display: flex;
+    /* width: 600px; */
+    /* display: flex; */
     flex-wrap: wrap;
     border: 1px white solid;
     margin-top: 15vh;
 }
 
 .box {
-    width: 10px;
-    height: 10px;
-    /* border: 1px solid rgba(255, 255, 255, .0); */
     background-color: black;
     font-family: "Squada One";
     font-weight: 500;
-    color: white;
+    color: black;
+    background-color: rgb(0, 0, 0);
     font-size: 90px;
 }
 
@@ -66,5 +65,17 @@ body {
     color: black;
 }
 
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.fill {
+    background-image: url(../img/paint-bucket.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 
