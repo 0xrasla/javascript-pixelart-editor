@@ -3,7 +3,9 @@ let gridWidth = gridheight = "10px";
 let palleteContainer = document.querySelector(".pallete");
 
 let selectedColor = "white";
-let defaultColor = 'black';
+let defaultColor = "black";
+
+let eraserEnabled = false;
 
 function generateGrid(v) {
         let e = document.querySelector('.pallete');
@@ -27,10 +29,6 @@ function handleButtons() {
     for(let i of Array.from(colorPalleteButtons)) {
         i.addEventListener("click", (e) => {
             selectedColor = i.style.backgroundColor;
-
-            if(i.classList.contains('eraser')) {
-                selectedColor = defaultColor;
-            }
         })
     }
 }
@@ -48,13 +46,26 @@ function draw() {
         i.addEventListener("mouseenter", () => {
             if(cliked) {
                 i.style.backgroundColor = selectedColor;
+
+                if(i.classList.contains('eraser')) {
+                    eraserEnabled = true;
+                }else {
+                    eraserEnabled = false;
+                }
+            }
+
+            i.setAttribute('class', 'box bg')
+
+            document.body.onmousedown = () => {
+                cliked = true;
             }
 
             document.body.onmouseup = () => {
                 cliked = false;
             }
 
-            if (!cliked) i.style.backgroundColor = selectedColor; 
+            if (!cliked && i.style.backgroundColor == selectedColor) i.style.backgroundColor = selectedColor;
+
         })
 
         i.addEventListener("mouseleave", () => {
@@ -66,7 +77,11 @@ function draw() {
                 cliked = false;
             }
 
-            if (!cliked) i.style.backgroundColor = defaultColor; 
+            if(eraserEnabled) {
+                if (!cliked && i.style.backgroundColor == selectedColor) i.style.backgroundColor = defaultColor; 
+            }
+
+            i.setAttribute('class', 'box')
         })
     }
 }

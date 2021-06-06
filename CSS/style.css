@@ -17,20 +17,9 @@ body {
 }
 
 .pallete {
-    /* width: 600px; */
-    /* display: flex; */
     flex-wrap: wrap;
     border: 1px white solid;
     margin-top: 15vh;
-}
-
-.box {
-    background-color: black;
-    font-family: "Squada One";
-    font-weight: 500;
-    color: black;
-    background-color: rgb(0, 0, 0);
-    font-size: 90px;
 }
 
 .color-button {
@@ -47,6 +36,14 @@ body {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+.box {
+    background-color: black;
+}
+
+.bg {
+    background-color: rgba(78, 75, 75, 0.438);
 }
 
 .btn {
